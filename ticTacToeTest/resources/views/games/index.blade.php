@@ -123,7 +123,7 @@
         font-family: 'Press Start 2P', cursive;
         font-size: 1.25rem;
         font-weight: bold;
-        color: #1e40af; /* Bleu arcade */
+        color: #ff28dbff; /* Bleu arcade */
         text-shadow: 2px 2px 4px #000;
         letter-spacing: 1px;
     }
