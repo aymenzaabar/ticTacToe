@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    public function __construct(private GameService $gameService) {}
+    public function __construct(private GameService $gameService)
+    {
+    }
 
     // SPA/Blade home
-  public function index()
+    public function index()
     {
         // Get the latest 10 games for leaderboard
         $games = Game::latest()->take(10)->get();
@@ -21,33 +23,33 @@ class GameController extends Controller
     }
 
 
+    // POST /api/games
 // POST /api/games
-// POST /api/games
-public function store(Request $request): JsonResponse
-{
-    // You can check if "result" was passed from JS
-    $result = $request->input('result');
+    public function store(Request $request): JsonResponse
+    {
+        // You can check if "result" was passed from JS
+        $result = $request->input('result');
 
-    // Create a new game in DB
-    $game = $this->gameService->newGame();
+        // Create a new game in DB
+        $game = $this->gameService->newGame();
 
-    // If result is provided, mark it as finished
-    if ($result) {
-        if ($result === 'Match nul') {
-            $game->status = 'DRAW';
-            $game->winner = null;
-        } else {
-            // Result string looks like "Joueur X"
-            $winner = str_contains($result, 'X') ? 'X' : 'O';
-            $game->status = $winner . '_WON';
-            $game->winner = $winner;
+        // If result is provided, mark it as finished
+        if ($result) {
+            if ($result === 'Match nul') {
+                $game->status = 'DRAW';
+                $game->winner = null;
+            } else {
+                // Result string looks like "Joueur X"
+                $winner = str_contains($result, 'X') ? 'X' : 'O';
+                $game->status = $winner . '_WON';
+                $game->winner = $winner;
+            }
+            $game->finished_at = now();
+            $game->save();
         }
-        $game->finished_at = now();
-        $game->save();
-    }
 
-    return response()->json($game);
-}
+        return response()->json($game);
+    }
 
 
     public function newGame(): JsonResponse

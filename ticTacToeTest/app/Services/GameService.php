@@ -8,12 +8,17 @@ use InvalidArgumentException;
 class GameService
 {
     private const WIN_LINES = [
-        [0,1,2],[3,4,5],[6,7,8], // lignes
-        [0,3,6],[1,4,7],[2,5,8], // colonnes
-        [0,4,8],[2,4,6],          // diagonales
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8], // lignes
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8], // colonnes
+        [0, 4, 8],
+        [2, 4, 6],          // diagonales
     ];
 
-    /** 
+    /**
      * Crée une nouvelle partie
      */
     public function newGame(): Game
@@ -45,7 +50,7 @@ class GameService
             throw new InvalidArgumentException('Cell already taken');
         }
 
-        $player = $game->current_player; 
+        $player = $game->current_player;
         $board[$index] = $player;
         $game->board = implode('', $board);
 
@@ -75,9 +80,11 @@ class GameService
     private function isWin(array $board, string $player): bool
     {
         foreach (self::WIN_LINES as $line) {
-            if ($board[$line[0]] === $player &&
+            if (
+                $board[$line[0]] === $player &&
                 $board[$line[1]] === $player &&
-                $board[$line[2]] === $player) {
+                $board[$line[2]] === $player
+            ) {
                 return true;
             }
         }
@@ -95,19 +102,19 @@ class GameService
         foreach ($players as $player) {
             $wins = Game::where('winner', $player)->count();
             $losses = Game::whereNotNull('winner')
-                          ->where('winner', '!=', $player)
-                          ->count();
+                ->where('winner', '!=', $player)
+                ->count();
             $draws = Game::where('status', 'DRAW')->count();
 
             $leaderboard[$player] = [
-                'wins'   => $wins,
+                'wins' => $wins,
                 'losses' => $losses,
-                'draws'  => $draws,
+                'draws' => $draws,
             ];
         }
 
         return $leaderboard;
     }
 
-   
+
 }
