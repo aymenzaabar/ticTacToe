@@ -6,7 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-      use HasFactory;
+      {
+protected $fillable = [
+'board','current_player','status','winner','started_at','finished_at'
+];
 
-    protected $fillable = ['winner']; // On remplit uniquement la colonne 'winner'
+
+protected $casts = [
+'started_at' => 'datetime',
+'finished_at' => 'datetime',
+];
+
+
+public function isFinished(): bool
+{
+return $this->status !== 'IN_PROGRESS';
+}
+
+
+public function boardArray(): array
+{
+return str_split($this->board);
+}
+}
 }

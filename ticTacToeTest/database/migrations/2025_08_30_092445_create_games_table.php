@@ -12,9 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        $table->id();
+        // Board stored as 9-char string: '---------','X--O---X-','XO...'
+        $table->char('board', 9)->default('---------');
+        $table->enum('current_player', ['X','O'])->default('X');
+        $table->enum('status', ['IN_PROGRESS','X_WON','O_WON','DRAW'])->default('IN_PROGRESS');
+        $table->enum('winner', ['X','O'])->nullable();
+        $table->timestamp('started_at')->useCurrent();
+        $table->timestamp('finished_at')->nullable();
+        $table->timestamps();
+});
     }
 
     /**

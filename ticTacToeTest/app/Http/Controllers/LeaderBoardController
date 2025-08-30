@@ -1,0 +1,21 @@
+<?php
+namespace App\Http\Controllers;
+
+
+use App\Models\Game;
+
+
+class LeaderboardController extends Controller
+{
+// GET /api/leaderboard
+public function __invoke()
+{
+$stats = [
+'x_wins' => Game::where('status','X_WON')->count(),
+'o_wins' => Game::where('status','O_WON')->count(),
+'draws' => Game::where('status','DRAW')->count(),
+'total' => Game::count(),
+];
+return response()->json($stats);
+}
+}
