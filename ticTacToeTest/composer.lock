@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a59389decc3f6069f384f7a80bf3f0f9",
+    "content-hash": "a1dc4d57a7efbd1753aa2c7f6a7196cc",
     "packages": [
         {
             "name": "brick/math",
@@ -6360,6 +6360,68 @@
                 }
             ],
             "time": "2025-08-08T12:00:00+00:00"
+        },
+        {
+            "name": "getsolaris/laravel-make-service",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsolaris/laravel-make-service.git",
+                "reference": "fb3d6a078aee157c20644ea4f655d17b4477517e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getsolaris/laravel-make-service/zipball/fb3d6a078aee157c20644ea4f655d17b4477517e",
+                "reference": "fb3d6a078aee157c20644ea4f655d17b4477517e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.6.34|~5.7.0|~5.8.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "~5.6.34|~5.7.0|~5.8.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5|^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Getsolaris\\LaravelMakeService\\LaravelMakeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Getsolaris\\LaravelMakeService\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "getsolaris",
+                    "email": "getsolaris.kr@gmail.com"
+                }
+            ],
+            "description": "A MVCS pattern create a service command for Laravel 5+",
+            "keywords": [
+                "contract",
+                "laravel",
+                "mvcs",
+                "pattern",
+                "service"
+            ],
+            "support": {
+                "issues": "https://github.com/getsolaris/laravel-make-service/issues",
+                "source": "https://github.com/getsolaris/laravel-make-service/tree/v1.1.3"
+            },
+            "time": "2025-02-19T04:00:59+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",

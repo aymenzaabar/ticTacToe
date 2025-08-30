@@ -8,7 +8,6 @@
 </head>
 <body class="bg-gray-100 text-gray-900">
 <div class="max-w-xl mx-auto p-6">
-<h1 class="text-2xl font-bold mb-4">Morpion (Tic‑Tac‑Toe)</h1>
 @yield('content')
 </div>
 </body>
